@@ -1,4 +1,4 @@
-from src import slice_and_dice, read_data, draw_layout
+from src import slice_and_dice, squarified, read_data, draw_layout
 
 
 def main(data_file_name: str = "data.json", w: int = 1280, h: int = 720) -> None:
@@ -12,9 +12,8 @@ def main(data_file_name: str = "data.json", w: int = 1280, h: int = 720) -> None
 	:param h: The window height
 	:type h: int
 	"""
-
 	tree = read_data(data_file_name)
-	coords = slice_and_dice(tree, w, h)
+	coords = squarified(tree, w, h)
 	draw_layout(coords, w, h)
 
 

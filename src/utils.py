@@ -34,9 +34,11 @@ def list_to_tree(labels: list[Any], values: np.ndarray) -> Node:
 	"""
 	assert len(labels) == len(values), "Length of labels and values must be the same!"
 	norm_values = values / np.sum(values)
+	sorted_idx = np.argsort(-norm_values)
+	labels = [labels[i] for i in sorted_idx]
 
 	root = Node(None, np.sum(norm_values))
-	queue = deque([(root, labels, norm_values)])
+	queue = deque([(root, labels, norm_values[sorted_idx])])
 
 	while queue:
 		parent, labs, vals = queue.popleft()
